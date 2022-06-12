@@ -20,4 +20,4 @@ MonoBehaviour:
   range: 2
   attackSpeed: 1
   animOverride: {fileID: 22100000, guid: 8405298ba52e3e344920c01404eb7b17, type: 2}
-  modelPrefab: {fileID: 3689009792176604335, guid: edc8dbabf2fd9b543be4d36915877cc7, type: 3}
+  modelPrefab: {fileID: 3422899752518818094, guid: 2ef23c2219f60c946aa9bc396ce8a7a3, type: 3}

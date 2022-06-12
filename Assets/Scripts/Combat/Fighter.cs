@@ -16,20 +16,13 @@ namespace RPG.Combat
 
         private void Update()
         {
-            if (Inventory.EquipmentManager.instance.GetRightHandAsWeapon() == null)
-            {
-                currentRightHandWeapon = deafultWeapon;                
-            }
-            else 
-            {
-                currentRightHandWeapon = Inventory.EquipmentManager.instance.GetRightHandAsWeapon();
-            }
+            EquipmentChange();
 
             timeSinceLastAttack += Time.deltaTime;
 
             if (target == null) return;     // If no target at all bounce out
             if (target.IsDead()) return;    // If target is already dead bounce out
-            
+
             if (!GetIsInRange())            // If target is not in range move closer
             {
                 GetComponent<Motor>().MoveTo(target.transform.position);
@@ -41,6 +34,21 @@ namespace RPG.Combat
             }
         }
 
+        private void EquipmentChange()
+        {
+            if (Inventory.EquipmentManager.instance.GetRightHandAsWeapon() == null)
+            {
+                currentRightHandWeapon = deafultWeapon;
+            }
+            else if (Inventory.EquipmentManager.instance.GetRightHandAsWeapon() != null)
+            {
+                if (Inventory.EquipmentManager.instance.GetRightHandAsWeapon() != currentRightHandWeapon)
+                {
+                    currentRightHandWeapon = Inventory.EquipmentManager.instance.GetRightHandAsWeapon();
+                    EquipWeapon(currentRightHandWeapon);
+                }
+            }
+        }
 
         private void AttackBehaviour()
         {
@@ -71,7 +79,7 @@ namespace RPG.Combat
             return handTransform;
         }
 
-        public void EquipWeapon(Weapon weapon)
+        private void EquipWeapon(Weapon weapon)
         {
             currentRightHandWeapon = weapon;
             Animator animator = GetComponent<Animator>();

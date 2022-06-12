@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace RPG.Combat
@@ -11,6 +12,8 @@ namespace RPG.Combat
         [SerializeField] AnimatorOverrideController animOverride = null;
         [SerializeField] GameObject modelPrefab = null;
 
+        const string weaponName = "Weapon";
+
         public override void Use()
         {
             base.Use();
@@ -22,15 +25,32 @@ namespace RPG.Combat
 
         public void Spawn(Transform handTransform, Animator anim)
         {
+            DeSpawnOldWeapon(handTransform);
+
             if (modelPrefab != null)
             {
-                Instantiate(modelPrefab, handTransform);
+                GameObject weapon = Instantiate(modelPrefab, handTransform);
+                weapon.name = weaponName;
             }
             if (animOverride != null)
             {
                 anim.runtimeAnimatorController = animOverride;
             }
-        }        
+        }
+
+        private void DeSpawnOldWeapon(Transform handTransform)
+        {
+            Transform oldWeapon = handTransform.Find(weaponName);
+            if (oldWeapon == null) return;
+
+            oldWeapon.name = "if you see this theres an error";
+            Destroy(oldWeapon.gameObject);
+        }
+
+        public GameObject GetVisuals()
+        {
+            return modelPrefab;
+        }
 
         public float GetDamage()
         {

@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseUI : MonoBehaviour
+namespace RPG.UI
 {
-    public virtual void UpdateUI()
+    public class BaseUI : MonoBehaviour
     {
+        public virtual void UpdateUI()
+        {
 
+        }
     }
 }

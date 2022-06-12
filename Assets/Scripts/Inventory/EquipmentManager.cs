@@ -39,7 +39,7 @@ namespace RPG.Inventory
 
             if (currentEquipment[slotIndex] != null)
             {
-                oldItem = currentEquipment[slotIndex];
+                oldItem = currentEquipment[slotIndex];                
                 inventory.Add(oldItem);
             }
 

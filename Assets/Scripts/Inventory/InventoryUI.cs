@@ -1,5 +1,7 @@
 using UnityEngine;
-namespace RPG.Inventory
+using RPG.Inventory;
+
+namespace RPG.UI
 {
     public class InventoryUI : BaseUI
     {
@@ -8,12 +10,12 @@ namespace RPG.Inventory
         public Transform itemsParent;
         InventorySlot[] slots;
 
-        Inventory inventory;
+        Inventory.Inventory inventory;
 
         // Start is called before the first frame update
         void Start()
         {
-            inventory = Inventory.instance;
+            inventory = Inventory.Inventory.instance;
             inventory.onItemChangedCallback += UpdateUI;
 
             slots = itemsParent.GetComponentsInChildren<InventorySlot>();
